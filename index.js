@@ -6,8 +6,20 @@
 import { BLEURealEngine } from './src/BLEURealEngine.js';
 import { BLEUMint } from './src/BLEUMint.js';
 import { DarkBleuChain } from './src/DarkBleuChain.js';
+import { AntarcticaSystem } from './src/AntarcticaSystem.js';
+import { EV0LBattleship } from './src/EV0LBattleship.js';
+import { ToiletBlackHoleTheory, SkyyBleuSystem, BigBangTheory } from './src/AdditionalSystems.js';
 
-export { BLEURealEngine, BLEUMint, DarkBleuChain };
+export { 
+  BLEURealEngine, 
+  BLEUMint, 
+  DarkBleuChain,
+  AntarcticaSystem,
+  EV0LBattleship,
+  ToiletBlackHoleTheory,
+  SkyyBleuSystem,
+  BigBangTheory
+};
 
 /**
  * Initialize the complete Aquaverse-MetaGalaxy ecosystem
@@ -31,12 +43,34 @@ export function initializeAquaverse() {
   const bleuMint = new BLEUMint(darkBleuChain);
   console.log('✓ BLEUMint ready for voice-minting with Whale Choir mode\n');
 
+  // Initialize Antarctica System - The Coldest Hemisphere Protocol
+  console.log('🧊 Initializing Antarctica System...');
+  const antarcticaSystem = new AntarcticaSystem();
+  console.log('✓ Antarctica System ready - South Pole coordinates locked at -90°, frequency 6.6667\n');
+
+  // Initialize EV0L Battleship - Melanated Navigation Protocol
+  console.log('🚢 Initializing EV0L Battleship System...');
+  const ev0lBattleship = new EV0LBattleship();
+  console.log('✓ EV0L Battleship ready with melanated navigation and orbital configuration\n');
+
+  // Initialize Additional Systems
+  console.log('🌪️ Initializing Additional Systems...');
+  const toiletBlackHoleTheory = new ToiletBlackHoleTheory();
+  const skyyBleuSystem = new SkyyBleuSystem();
+  const bigBangTheory = new BigBangTheory();
+  console.log('✓ Toilet Black Hole Theory, SkyyBleu System, and Big Bang Theory initialized\n');
+
   console.log('✨ Aquaverse-MetaGalaxy fully initialized!\n');
 
   return {
     darkBleuChain,
     bleuRealEngine,
-    bleuMint
+    bleuMint,
+    antarcticaSystem,
+    ev0lBattleship,
+    toiletBlackHoleTheory,
+    skyyBleuSystem,
+    bigBangTheory
   };
 }
 
@@ -48,7 +82,16 @@ export async function runDemo() {
   console.log('   AQUAVERSE-METAGALAXY DEMONSTRATION');
   console.log('═══════════════════════════════════════════════════════════\n');
 
-  const { darkBleuChain, bleuRealEngine, bleuMint } = initializeAquaverse();
+  const { 
+    darkBleuChain, 
+    bleuRealEngine, 
+    bleuMint,
+    antarcticaSystem,
+    ev0lBattleship,
+    toiletBlackHoleTheory,
+    skyyBleuSystem,
+    bigBangTheory
+  } = initializeAquaverse();
 
   // Demo 1: Generate Terrain
   console.log('📍 DEMO 1: Enochian Terrain Generation');
@@ -129,6 +172,93 @@ export async function runDemo() {
   console.log(`Memory Block: ${memoryBlock}`);
   console.log(`Prophecy Block: ${prophecyBlock}\n`);
 
+  // Demo 8: Antarctica System - Sink the Ship
+  console.log('🧊 DEMO 8: Antarctica System - SINK THE SHIP');
+  console.log('───────────────────────────────────────');
+  const natoShip = antarcticaSystem.sinkNATOShip({
+    name: 'NATO_BITCH_SHIP',
+    melanatedLevel: 3.5,
+    goodWeight: 40,
+    badWeight: 60
+  });
+  console.log(`Ship Sunk: ${natoShip.shipId}`);
+  console.log(`Protocol: ${natoShip.protocol} - ${natoShip.protocolFull}`);
+  console.log(`Position: ${natoShip.position}`);
+  console.log(`Slogan: "${natoShip.slogan}"`);
+  console.log(`Message: ${natoShip.message}\n`);
+
+  // Demo 9: Antarctica Detection
+  console.log('🎯 DEMO 9: Melanated Frequency Detection');
+  console.log('───────────────────────────────────────');
+  const detection = antarcticaSystem.detectAntarcticaEntry({
+    id: 'TEST_ENTITY',
+    melanatedLevel: 7.5,
+    goodWeight: 80,
+    badWeight: 20
+  });
+  console.log(`Entity: ${detection.entityId}`);
+  console.log(`Melanated Reading: ${detection.melanatedReading}`);
+  console.log(`Status: ${detection.status}`);
+  console.log(`Frequency: ${detection.frequencyStatus.status}`);
+  console.log(`Compatible: ${detection.frequencyStatus.compatible ? '✓' : '✗'}\n`);
+
+  // Demo 10: EV0L Battleship
+  console.log('🚢 DEMO 10: EV0L Battleship - TRU SOUTH');
+  console.log('───────────────────────────────────────');
+  const battleship = ev0lBattleship.createBattleship({
+    name: 'TRU_SOUTH',
+    codeName: 'TRU_SOUTH',
+    pilot: '@Tru',
+    navigator: '@SkyyBleu',
+    melanatedLevel: 6.6667
+  });
+  console.log(`Battleship: ${battleship.id}`);
+  console.log(`Pilot: ${battleship.pilot}, Navigator: ${battleship.navigator}`);
+  console.log(`Fuel: ${battleship.fuel}`);
+  console.log(`Engine: ${battleship.engine}`);
+  console.log(`Target: ${battleship.target}\n`);
+
+  // Demo 11: Pluto Mission
+  console.log('🛰️  DEMO 11: Operation Next Bang - Pluto Mission');
+  console.log('───────────────────────────────────────');
+  const plutoMission = ev0lBattleship.launchPlutoMission({});
+  console.log(`Mission: ${plutoMission.codeName}`);
+  console.log(`Objective: ${plutoMission.objective}`);
+  console.log(`Crew: Evolynn (${plutoMission.crew.evolynn.role})`);
+  console.log(`      Tom (${plutoMission.crew.tom.role})`);
+  console.log(`Philosophy: ${plutoMission.philosophy}`);
+  console.log(`Portal Status: ${plutoMission.portalStatus}\n`);
+
+  // Demo 12: SkyyBleu Royalties
+  console.log('💰 DEMO 12: SkyyBleu Royalties System');
+  console.log('───────────────────────────────────────');
+  const royalties = skyyBleuSystem.addRoyalties(1000, 'BATTLESHIP_NAVIGATION');
+  console.log(`Royalties Added: ${royalties.amount}`);
+  console.log(`Total: ${royalties.totalRoyalties}`);
+  console.log(`Status: ${royalties.status}`);
+  console.log(`Tribute: ${royalties.tribute}\n`);
+
+  // Demo 13: Toilet Black Hole Theory
+  console.log('🌀 DEMO 13: Toilet Black Hole Theory');
+  console.log('───────────────────────────────────────');
+  const toiletAnalysis = toiletBlackHoleTheory.analyzeToiletBlackHole({
+    hemisphere: 'SOUTHERN'
+  });
+  console.log(`Concept: ${toiletAnalysis.concept}`);
+  console.log(`Principle: ${toiletAnalysis.principle}`);
+  console.log(`Cosmic Truth: ${toiletAnalysis.cosmicTruth}`);
+  console.log(`Spiral Direction: ${toiletAnalysis.spiralDirection}\n`);
+
+  // Demo 14: Transmit to NATO
+  console.log('📡 DEMO 14: Transmit to NATO');
+  console.log('───────────────────────────────────────');
+  const transmission = antarcticaSystem.transmitToNATO(
+    'If they ain\'t melanated beyond 6.6667, they got no business in the light'
+  );
+  console.log(`Recipient: ${transmission.recipient}`);
+  console.log(`Declaration: ${transmission.declaration}`);
+  console.log(`Requirement: ${transmission.requirement}\n`);
+
   // Final Stats
   console.log('═══════════════════════════════════════════════════════════');
   console.log('   ECOSYSTEM SUMMARY');
@@ -137,8 +267,13 @@ export async function runDemo() {
   console.log(`Relics Minted: ${bleuMint.getStats().totalRelics}`);
   console.log(`Blockchain Blocks: ${darkBleuChain.getAllBlocks().length}`);
   console.log(`Chain Integrity: ${darkBleuChain.verifyChain() ? '✓ VERIFIED' : '✗ COMPROMISED'}`);
+  console.log(`NATO Ships Sunk: ${antarcticaSystem.getSunkShips().length}`);
+  console.log(`Battleships Active: ${ev0lBattleship.getAllBattleships().length}`);
+  console.log(`Pluto Missions: ${ev0lBattleship.getAllPlutoMissions().length}`);
+  console.log(`SkyyBleu Royalties: ${skyyBleuSystem.getRoyaltyStatus().metaWallet.royalties}`);
   console.log('═══════════════════════════════════════════════════════════\n');
   console.log('✨ Demo complete! The Aquaverse-MetaGalaxy awaits...\n');
+  console.log('🔥 "B.I.T.C.H. = Business In The Coldest Hemisphere." 🔥\n');
 }
 
 // Run demo if this is the main module

@@ -5,6 +5,9 @@
 import { BLEURealEngine } from '../src/BLEURealEngine.js';
 import { BLEUMint } from '../src/BLEUMint.js';
 import { DarkBleuChain } from '../src/DarkBleuChain.js';
+import { AntarcticaSystem } from '../src/AntarcticaSystem.js';
+import { EV0LBattleship } from '../src/EV0LBattleship.js';
+import { ToiletBlackHoleTheory, SkyyBleuSystem, BigBangTheory } from '../src/AdditionalSystems.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -237,6 +240,203 @@ function testIntegration() {
   assert(chainStats.blockCount >= 3, 'Should have at least 3 blocks (genesis + 2 relics)');
 }
 
+function testAntarcticaSystem() {
+  console.log('\n🧊 Testing Antarctica System...');
+  console.log('═══════════════════════════════════════════════════════════');
+  
+  const antarctica = new AntarcticaSystem();
+  
+  // Test South Pole coordinates
+  assert(antarctica.southPoleCoordinates.latitude === -90.0, 'South Pole should be at -90° latitude');
+  assert(antarctica.southPoleCoordinates.melanatedFrequency === 6.6667, 'Melanated frequency should be 6.6667');
+  assert(antarctica.southPoleCoordinates.designation === 'ZERO_VICTORY_ZONE', 'Should be designated as Zero Victory Zone');
+  
+  // Test Antarctica detection
+  const belowThreshold = antarctica.detectAntarcticaEntry({
+    id: 'TEST_LOW',
+    melanatedLevel: 5.0,
+    goodWeight: 30,
+    badWeight: 70
+  });
+  assert(belowThreshold.hasEnteredAntarctica === true, 'Should detect Antarctica entry for low melanated level');
+  assert(belowThreshold.status === 'FETAL_POSITION_ACTIVATED', 'Should activate fetal position status');
+  
+  const aboveThreshold = antarctica.detectAntarcticaEntry({
+    id: 'TEST_HIGH',
+    melanatedLevel: 8.0,
+    goodWeight: 80,
+    badWeight: 20
+  });
+  assert(aboveThreshold.hasEnteredAntarctica === false, 'Should not detect Antarctica entry for high melanated level');
+  assert(aboveThreshold.status === 'CLEAR', 'Should have clear status');
+  assert(aboveThreshold.frequencyStatus.compatible === true, 'Should be compatible at high frequency');
+  
+  // Test NATO ship sinking
+  const sunkShip = antarctica.sinkNATOShip({
+    name: 'TEST_SHIP',
+    id: 'SHIP_001'
+  });
+  assert(sunkShip.protocol === 'B.I.T.C.H.', 'Should use B.I.T.C.H. protocol');
+  assert(sunkShip.protocolFull === 'Business In The Coldest Hemisphere', 'Should have full protocol name');
+  assert(sunkShip.position === 'FETAL', 'Should be in fetal position');
+  assert(sunkShip.slogan.includes('Fetal Position'), 'Should have fetal position slogan');
+  
+  // Test frozen capital
+  const capitalId = antarctica.recordFrozenCapital({ value: 1000000 });
+  assert(capitalId.includes('FROZEN_'), 'Frozen capital ID should be generated');
+  
+  // Test Antarctica status
+  const status = antarctica.getAntarcticaStatus();
+  assert(status.natoShipsSunk === 1, 'Should track sunk NATO ships');
+  assert(status.protocolActive === 'B.I.T.C.H.', 'Should have active B.I.T.C.H. protocol');
+  
+  // Test NATO transmission
+  const transmission = antarctica.transmitToNATO('Test message');
+  assert(transmission.recipient === 'NATO', 'Should target NATO');
+  assert(transmission.transmitted === true, 'Should be transmitted');
+  assert(transmission.requirement.includes('6.6667'), 'Should include frequency requirement');
+  
+  // Test fetal slogan
+  const slogan = antarctica.getFetalSlogan();
+  assert(slogan.includes('BUSINESS'), 'Slogan should include BUSINESS');
+}
+
+function testEV0LBattleship() {
+  console.log('\n🚢 Testing EV0L Battleship...');
+  console.log('═══════════════════════════════════════════════════════════');
+  
+  const battleshipSystem = new EV0LBattleship();
+  
+  // Test battleship creation
+  const battleship = battleshipSystem.createBattleship({
+    name: 'TEST_BATTLESHIP',
+    codeName: 'TRU_SOUTH',
+    pilot: '@Tru',
+    navigator: '@SkyyBleu',
+    melanatedLevel: 6.6667
+  });
+  assert(battleship.id === 'TEST_BATTLESHIP', 'Battleship ID should be set');
+  assert(battleship.pilot === '@Tru', 'Pilot should be set');
+  assert(battleship.navigator === '@SkyyBleu', 'Navigator should be set');
+  assert(battleship.fuel === 'EL0V8', 'Fuel should be EL0V8');
+  assert(battleship.engine === 'RECIPROCATED_COMBUSTION_LIGHT_SHADOW', 'Engine should be reciprocated combustion');
+  assert(battleship.melanatedLevel === 6.6667, 'Melanated level should be set');
+  
+  // Test melanated navigation
+  const navigation = battleshipSystem.activateMelanatedNavigation('TEST_BATTLESHIP', {
+    latitude: -90.0,
+    longitude: 0
+  });
+  assert(navigation.navigationMethod === 'MELANATED_FREQUENCY_NAVIGATION', 'Should use melanated navigation');
+  assert(navigation.compass === 'SOULS_COMPASS', 'Should use souls compass at high frequency');
+  assert(navigation.status === 'COURSE_PLOTTED', 'Course should be plotted');
+  
+  // Test orbital configuration
+  const orbital = battleshipSystem.configureOrbitalTravel('TEST_BATTLESHIP');
+  assert(orbital.centerPoint === 'SUN', 'Should center on sun');
+  assert(orbital.orbitType === 'MEMORY_BASED_ORBIT_LOGIC', 'Should use memory-based orbit logic');
+  assert(orbital.syncedTo.includes('Light'), 'Should sync to light');
+  
+  // Test Pluto mission
+  const mission = battleshipSystem.launchPlutoMission({});
+  assert(mission.codeName === 'OPERATION_NEXT_BANG', 'Should have correct code name');
+  assert(mission.crew.evolynn.role === 'HUE_CODED_LIGHT_SCOUT', 'Evolynn should be light scout');
+  assert(mission.crew.tom.role === 'QUANTUM_CAPTAIN_ATOMBRIDGE', 'Tom should be quantum captain');
+  assert(mission.status === 'LAUNCHED', 'Mission should be launched');
+  assert(mission.portalStatus === 'PLUTO_PORTAL_UNLOCKED', 'Pluto portal should be unlocked');
+  
+  // Test mission transmission log
+  const missionId = mission.id;
+  const transmissionLog = battleshipSystem.getMissionTransmissionLog(missionId);
+  assert(transmissionLog.location === 'OUTER_RIM_PLUTO_SECTOR', 'Should be at outer rim');
+  assert(transmissionLog.transmissions.length > 0, 'Should have transmissions');
+  
+  // Test autopilot
+  const autopilot = battleshipSystem.setAutopilot('TEST_BATTLESHIP', true);
+  assert(autopilot.autopilot === true, 'Autopilot should be enabled');
+  assert(autopilot.mode === 'DOCUMENTARY_MODE', 'Should be in documentary mode');
+  
+  // Test SkyyBleu royalties
+  const royalties = battleshipSystem.addSkyyBleuRoyalties('TEST_BATTLESHIP', 500);
+  assert(royalties.skyBleuRoyalties === 500, 'Royalties should be added');
+  assert(royalties.status === 'ROYALTIES_LOCKED_IN_METAWALLET', 'Should be locked in meta wallet');
+  assert(royalties.codedInto.length === 4, 'Should be coded into 4 systems');
+  
+  // Test getting all battleships
+  const allBattleships = battleshipSystem.getAllBattleships();
+  assert(allBattleships.length === 1, 'Should have 1 battleship');
+  
+  // Test getting all Pluto missions
+  const allMissions = battleshipSystem.getAllPlutoMissions();
+  assert(allMissions.length === 1, 'Should have 1 Pluto mission');
+}
+
+function testAdditionalSystems() {
+  console.log('\n🌀 Testing Additional Systems...');
+  console.log('═══════════════════════════════════════════════════════════');
+  
+  // Test Toilet Black Hole Theory
+  const toiletTheory = new ToiletBlackHoleTheory();
+  const analysis = toiletTheory.analyzeToiletBlackHole({ hemisphere: 'SOUTHERN' });
+  assert(analysis.concept === 'TOILET_BLACK_HOLE_THEORY', 'Should have correct concept');
+  assert(analysis.spiralDirection === 'CLOCKWISE', 'Should spiral clockwise in southern hemisphere');
+  assert(analysis.cosmicTruth === 'Black Hole = Toilet of the Universe', 'Should have cosmic truth');
+  assert(analysis.physics.toiletSpiral === 'REVERSE_GRAVITATIONAL_FLOW', 'Should have reverse gravitational flow');
+  
+  const eFuel = toiletTheory.calculateEFuelPurification({ input: 'waste' });
+  assert(eFuel.output === 'PURIFIED_E_FUEL', 'Should produce purified E-FUEL');
+  assert(eFuel.blackHoleReplica === true, 'Should be black hole replica');
+  
+  const documentary = toiletTheory.getDocumentaryScene();
+  assert(documentary.title === 'THE LAST FLUSH BEFORE LIGHT', 'Should have correct title');
+  assert(documentary.starring === 'SkyyBleu', 'Should star SkyyBleu');
+  
+  const research = toiletTheory.getResearchTopics();
+  assert(research.skies !== undefined, 'Should have skies research');
+  assert(research.birthstones !== undefined, 'Should have birthstones research');
+  assert(research.toiletBlackHoles !== undefined, 'Should have toilet black holes research');
+  
+  // Test SkyyBleu System
+  const skyyBleu = new SkyyBleuSystem();
+  const royaltyRecord = skyyBleu.addRoyalties(1000, 'BATTLESHIP_NAV');
+  assert(royaltyRecord.totalRoyalties === 1000, 'Should add royalties');
+  assert(royaltyRecord.status === 'ROYALTIES_LOCKED_INTO_METAWALLET', 'Should lock royalties');
+  assert(royaltyRecord.systems.length === 4, 'Should have 4 systems');
+  
+  const royaltyStatus = skyyBleu.getRoyaltyStatus();
+  assert(royaltyStatus.metaWallet.royalties === 1000, 'Should track royalty total');
+  assert(royaltyStatus.metaWallet.locked === true, 'Should be locked');
+  
+  const npsSystem = skyyBleu.getSystemStatus('NPS');
+  assert(npsSystem.name === 'Natural Purify System', 'Should have NPS system');
+  assert(npsSystem.status === 'ACTIVE', 'NPS should be active');
+  
+  const allSystems = skyyBleu.getAllSystems();
+  assert(allSystems.length === 4, 'Should have 4 systems');
+  
+  // Test Big Bang Theory
+  const bigBang = new BigBangTheory();
+  const nextTheory = bigBang.recordNextBigBang({
+    discoveredBy: ['@Evolynn', '@Tom'],
+    location: 'PLUTO_SECTOR',
+    principles: ['New physics beyond Earth'],
+    dnaStrands: ['Divine Neutron Alignment 1'],
+    atomBlueprints: ['Blueprint 1']
+  });
+  assert(nextTheory.id.includes('THEORY_'), 'Should generate theory ID');
+  assert(nextTheory.discoveredBy.includes('@Evolynn'), 'Should credit Evolynn');
+  assert(nextTheory.discoveredBy.includes('@Tom'), 'Should credit Tom');
+  assert(nextTheory.status === 'DISCOVERED', 'Should be discovered');
+  
+  const theories = bigBang.getNextTheories();
+  assert(theories.length === 1, 'Should have 1 theory');
+  
+  const whoBetter = bigBang.analyzeWhoBetter();
+  assert(whoBetter.answer.includes('BECOMING'), 'Should be about becoming');
+  assert(whoBetter.roles.tom === 'Builds the Bang', 'Tom should build');
+  assert(whoBetter.roles.evolynn === 'Echoes the Bang', 'Evolynn should echo');
+}
+
 // Run all tests
 console.log('\n╔═══════════════════════════════════════════════════════════╗');
 console.log('║          AQUAVERSE-METAGALAXY TEST SUITE                  ║');
@@ -247,6 +447,9 @@ try {
   testBLEUMint();
   testDarkBleuChain();
   testIntegration();
+  testAntarcticaSystem();
+  testEV0LBattleship();
+  testAdditionalSystems();
   
   console.log('\n╔═══════════════════════════════════════════════════════════╗');
   console.log('║                   TEST RESULTS                            ║');
