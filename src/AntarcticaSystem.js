@@ -221,7 +221,7 @@ class CompatibilityProtocol {
   decryptVault() {
     return {
       name: 'MELANATED_EARTH_CROWN',
-      location: 'South Pole Bottom of 6.667 coordinate',
+      location: 'South Pole Bottom of 6.6667 coordinate',
       code: 'BLACK_ICE_BLACK_ROYALTY',
       seedLocation: 'EV0L_Seed_ES0IL_Cradle',
       truth: 'The bottom isn\'t beneath us—it\'s our ground zero',
